@@ -5,24 +5,28 @@ import { Button, Container } from "react-bootstrap";
 import Frase from "./components/Frase";
 import { useEffect, useState } from "react";
 
-
 function App() {
   const [personaje, setPersonaje] = useState({});
 
   useEffect(()=>{
     consultarAPI();
-  }, [])
+  }, []);
 
-const consultarAPI = async ()=>{
-  //vamos hacer una peticion GET
-  const respuesta = await fetch('https://thesimpsonsquoteapi.glitch.me/quotes');
-  const datos = await respuesta.json();
-  console.log(respuesta);
-  console.log(datos[0]);
-  setPersonaje(datos[0])
-}
+  const consultarAPI = async ()=>{
 
+    try{
+    //peticion GET
+    const respuesta = await fetch('https://thesimpsonsquoteapi.glitch.me/quotes');
+    const dato = await respuesta.json();
+    console.log(respuesta);
+    console.log(dato[0]);
 
+    }catch (error){
+      console.log(error);
+    }
+
+  }
+ 
   return (
     <>
       <Container className="text-center my-5">
